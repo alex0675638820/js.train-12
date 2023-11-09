@@ -137,8 +137,8 @@ function getKeysStartingWith(dictionary, letter) {
   // Оголошення порожнього масиву для збереження ключів
   let a = [];
   // Перебір ключів словника за допомогою циклу for...of
-  for(let i of dictionary){
-	if (i.toLowerCase() === letter) {a.set(i)} ;
+  for(let i of dictionary.keys()){
+	if (i.toLowerCase(letter)) {a.push(i)} ;
   }
   // Перевірка, чи ключ починається з заданої букви
   // Якщо ключ починається з заданої букви, додаємо його до масиву
@@ -176,11 +176,11 @@ function addKeyValuePairs(dictionary, entries) {
   let added = 0;
   let rejected = 0; 
   // Використовуємо метод forEach для перебору масиву пар ключ-значення
-  entries.forEach((value, key, entries) => 
-	if(dictionary.has(key)){rejected ++} else {
+  entries.forEach(([key, value]) => 
+	{if(dictionary.has(key)){rejected ++} else {
 		dictionary.set(key),
 		added ++;	
-	})
+	}})
   
   // Перевіряємо, чи словник вже містить такий ключ за допомогою методу has
   // Якщо ключ є унікальним, додаємо його до словника за допомогою методу set та збільшимо added на 1
@@ -261,7 +261,7 @@ function checkPresence(dictionary, keys) {
   // Створюємо порожній масив для збереження результатів перевірки
   let presence = new Map();
   // Використовуємо цикл forEach для перебору масиву ключів
-  forEach((value, keys) => console.log(presence.set(dictionary.has(keys))))
+  forEach((value, keys) => console.log(presence.push(dictionary.has(keys))))
   // Додаємо результат перевірки (true або false) до масиву presence при наявності ключа у словнику
   // Повертаємо масив
   return presence;
@@ -295,7 +295,7 @@ function getFilteredDictionarySize(dictionary, filter) {
   for(let i of dictionary) {
 	dictionary.entries(i)
   }
-  if(dictionary.has([key, value]) === filter){
+  if(dictionary.has(filter)){
 	map.set([key, value])
   };
   // Якщо пара [ключ, значення] відповідає фільтру, додаємо її до фільтрованого словника
@@ -327,7 +327,7 @@ console.log(
  */
 function sortByValues(dictionary) {
   // Конвертуємо словник в масив пар ключ-значення за допомогою оператора деструктурізації
-  let a = new Map(set.entries([...dictionary]))
+  let a = new Map.entries([...dictionary])
   // Сортуємо масив пар ключ-значення за значеннями в порядку спадання
   // Конвертуємо відсортований масив пар ключ-значення назад у словник
   console.log(new Set(map.entries([key, value])))
@@ -362,7 +362,7 @@ console.log(
  */
 function resetDictionary(dictionary, maxSize) {
   // Використовуємо метод size для перевірки кількості елементів у словнику
-  let a = dictionary.size();
+  let a = dictionary.size;
   // Якщо кількість елементів більша ніж максимально допустима, очищуємо словник за допомогою методу clear
   if(a > maxSize) {
 	dictionary.clear;
@@ -438,11 +438,12 @@ console.log(convertDictionaryToSet(mixedDictionary));
  */
 function convertSetToDictionary(set) {
   // Перебираємо елементи множини
-  forEach(key, value, set) 
-  rezult.set(value, key.toLowerCase())
+  for(let i of set) 
+//   rezult.set(value, key.toLowerCase())
   // Додаємо елемент в словник з ключем, який дорівнює елементу, та значенням, яке дорівнює коду його першого символу
+  newDictionary.set(i, i.charCodeAt(0));
   // Повертаємо отриманий словник
-  return rezult;
+  return newDictionary;
 }
 
 // Приклад використання функції convertSetToDictionary
